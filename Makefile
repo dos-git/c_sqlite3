@@ -15,6 +15,9 @@
 # suppress all output info whem the command "make clean" is executed
 .SILENT: clean
 
+CWD=$(shell pwd)
+DB_PATH="$(CWD)/data/test_sqlite.db"
+
 
 # Rules section
 prog :
@@ -26,3 +29,4 @@ test_SQL :
 clean :
 	if [ -a main.o ];        then rm main.o;        fi
 	if [ -a test_SQLite.o ]; then rm test_SQLite.o; fi
+	if [ -a $(DB_PATH) ];    then rm $(DB_PATH); fi
