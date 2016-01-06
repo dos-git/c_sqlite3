@@ -12,11 +12,17 @@
 #LDFLAGS   = -L$(CUNIT_DIR)
 #LIBS      = -lcunit
 
+# suppress all output info whem the command "make clean" is executed
+.SILENT: clean
+
 
 # Rules section
-#
-prog_str :
-	gcc main.c -lsqlite3 -o main_out 
+prog :
+	gcc main.c -lsqlite3 -o main.o
+
+test_SQL :
+	gcc test_SQLite.c -o test_SQLite.o -lcunit
 
 clean :
-	rm main_out
+	if [ -a main.o ];        then rm main.o;        fi
+	if [ -a test_SQLite.o ]; then rm test_SQLite.o; fi
