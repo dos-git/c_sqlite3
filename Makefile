@@ -21,7 +21,7 @@ DB_PATH="$(CWD)/data/test_sqlite.db"
 
 # Rules section
 prog :
-	gcc main.c -lsqlite3 -o main.o
+	gcc main.c resources_sqlite.c -lsqlite3 -o main.o
 
 test_SQL :
 	gcc test_SQLite.c -o test_SQLite.o -lcunit
