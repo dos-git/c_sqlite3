@@ -3,6 +3,7 @@
 #include <string.h>
 #include "CUnit/Basic.h"
 
+#include "resources_sqlite.h"
 
 char *lines_20 = "--------------------";
 /*
@@ -11,7 +12,17 @@ char *lines_20 = "--------------------";
              open a file which we will be testing in our test function.
              Returns zero on success, non-zero otherwise.
 */
-int init_suite(void)  { return 0; }
+int init_suite(void)
+{
+    int rc;
+    sqlite3 *db_h;
+    rc = check_db_file();
+    open_db(&db_h);
+    if (rc != ERR_OK) execute_query(db_h,SQL_CREATE);
+    close_db(db_h);
+
+    return 0;
+}
 
 /*
 
@@ -20,7 +31,12 @@ int init_suite(void)  { return 0; }
                i.e. close a file, free memory etc.
                Returns zero on success, non-zero otherwise.
 */
-int clean_suite(void) { return 0; }
+int clean_suite(void) {
+
+    int rc;
+    rc = check_db_file();
+    if (rc == ERR_OK) remove(DB_PATH);
+    return 0; }
 
 
 int Return_One(){ return 1; }

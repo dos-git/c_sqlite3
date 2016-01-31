@@ -24,7 +24,7 @@ prog :
 	gcc main.c resources_sqlite.c -lsqlite3 -o main.o
 
 test_SQL :
-	gcc test_SQLite.c -o test_SQLite.o -lcunit
+	gcc test_SQLite.c resources_sqlite.c -o test_SQLite.o -lcunit -lsqlite3
 
 clean :
 	if [ -a main.o ];        then rm main.o;        fi

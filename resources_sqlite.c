@@ -3,7 +3,6 @@
 int check_db_file()
 {
     int rc;
-    printf("ACCESS [%d]\n", access(DB_PATH, F_OK));
     /* access returns: 0 => files exist, -1 => no file */
     if (access(DB_PATH, F_OK) == ERR_OK){
         rc = ERR_OK;
