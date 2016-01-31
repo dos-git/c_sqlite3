@@ -17,6 +17,9 @@
                     "id INTEGER NOT NULL PRIMARY KEY," \
                     "name TEXT" \
                     ");"
+#define SQL_INSERT_HC "INSERT INTO MY_TAB VALUES(1, \"Domino\");" \
+                      "INSERT INTO MY_TAB VALUES(2, \"Stefano\");"
+#define SQL_SELECT_ALL "SELECT * FROM MY_TAB;"
 
 int open_db(sqlite3 **db_h);      /* opens DB by handler (a pointer)*/
 int close_db(sqlite3 *db_h);     /* close DB */
