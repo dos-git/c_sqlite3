@@ -18,8 +18,8 @@
                     "name TEXT" \
                     ");"
 
-int open_db(sqlite3 *dbh_ptr);      /* opens DB by handler (a pointer)*/
-int close_db(sqlite3 *dbh_ptr);     /* close DB */
+int open_db(sqlite3 *db_h);      /* opens DB by handler (a pointer)*/
+int close_db(sqlite3 *db_h);     /* close DB */
 
 int check_db_file(void);                /* verifies DB file existance */
 int create_db_structure(void);          /* call function to create DB structure */
