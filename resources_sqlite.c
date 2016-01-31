@@ -52,3 +52,20 @@ int execute_query(sqlite3 *db_h, char *sql_query)
     }
     return rc;
 }
+
+int insert_values(sqlite3_stmt **stmt_insert_values)
+{
+    sqlite3_bind_int((*stmt_insert_values), 1, 3);
+    sqlite3_bind_text((*stmt_insert_values), 2, "DDD", sizeof("DDD"), NULL);
+    sqlite3_step((*stmt_insert_values));
+
+    /* neccessary if SQL query will be reused */
+    sqlite3_reset((*stmt_insert_values));
+
+    sqlite3_bind_int((*stmt_insert_values), 1, 4);
+    sqlite3_bind_text((*stmt_insert_values), 2, "SSS", sizeof("SSS"), NULL);
+    sqlite3_step((*stmt_insert_values));
+
+
+    return 0;
+}

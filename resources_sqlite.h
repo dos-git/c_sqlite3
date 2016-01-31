@@ -19,6 +19,8 @@
                     ");"
 #define SQL_INSERT_HC "INSERT INTO MY_TAB VALUES(1, \"Domino\");" \
                       "INSERT INTO MY_TAB VALUES(2, \"Stefano\");"
+#define SQL_INSERT_VALUES "INSERT INTO MY_TAB VALUES(?,?);" \
+
 #define SQL_SELECT_ALL "SELECT * FROM MY_TAB;"
 
 int open_db(sqlite3 **db_h);      /* opens DB by handler (a pointer)*/
@@ -28,6 +30,7 @@ int check_db_file(void);                /* verifies DB file existance */
 int create_db_structure(void);          /* call function to create DB structure */
 int check_db_structure(void);           /* verifies DB structure */
 
+int insert_values(sqlite3_stmt **stmt_insert_values);
 int execute_query(sqlite3 *db_h, char *sql_query);
 
 #endif
