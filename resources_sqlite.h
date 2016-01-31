@@ -14,15 +14,17 @@
 
 #define DB_PATH "data/test_sqlite.db"
 #define SQL_CREATE "CREATE TABLE MY_TAB(" \
-                    "id INT NOT NUL PRIMARY KEY," \
+                    "id INTEGER NOT NULL PRIMARY KEY," \
                     "name TEXT" \
                     ");"
 
-int open_db(sqlite3 *db_h);      /* opens DB by handler (a pointer)*/
+int open_db(sqlite3 **db_h);      /* opens DB by handler (a pointer)*/
 int close_db(sqlite3 *db_h);     /* close DB */
 
 int check_db_file(void);                /* verifies DB file existance */
 int create_db_structure(void);          /* call function to create DB structure */
 int check_db_structure(void);           /* verifies DB structure */
+
+int execute_query(sqlite3 *db_h, char *sql_query);
 
 #endif

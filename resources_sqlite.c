@@ -3,6 +3,7 @@
 int check_db_file()
 {
     int rc;
+    printf("ACCESS [%d]\n", access(DB_PATH, F_OK));
     /* access returns: 0 => files exist, -1 => no file */
     if (access(DB_PATH, F_OK) == ERR_OK){
         rc = ERR_OK;
@@ -16,12 +17,12 @@ int check_db_file()
     return rc;
 }
 
-int open_db(sqlite3 *db_h)
+int open_db(sqlite3 **db_h)
 {
     int rc;
-    rc = sqlite3_open(DB_PATH, &db_h);
+    rc = sqlite3_open(DB_PATH, &(*db_h));
     if (rc != SQLITE_OK){
-        fprintf(stderr, "Cannot access DB: [%s]", sqlite3_errmsg(db_h));
+        fprintf(stderr, "Cannot access DB: [%s]", sqlite3_errmsg((*db_h)));
         rc = ERR_OP_FAILED;
     }
     return rc;
