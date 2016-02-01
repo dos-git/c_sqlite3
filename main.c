@@ -1,6 +1,8 @@
 #include "resources_sqlite.h"
 #include <unistd.h>
 
+//dasdasd
+
 int main(int argc, char **argv)
 {
     int rc;
