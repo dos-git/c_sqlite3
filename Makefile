@@ -23,8 +23,12 @@ DB_PATH="$(CWD)/data/test_sqlite.db"
 prog :
 	gcc main.c resources_sqlite.c -lsqlite3 -o main.o
 
+use_gdb :
+		gcc -g main.c resources_sqlite.c -lsqlite3 -o main.o
+
 test_SQL :
 	gcc test_SQLite.c resources_sqlite.c -o test_SQLite.o -lcunit -lsqlite3
+
 
 clean :
 	if [ -a main.o ];        then rm main.o;        fi
