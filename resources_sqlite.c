@@ -83,24 +83,17 @@ void print_time()
     printf ( "Current local time and date: %s\n\n", asctime (timeinfo) );
 }
 
-int insert_values(sqlite3_stmt **stmt_insert_values)
+int insert_values(sqlite3_stmt **stmt_insert_values, int nr, const char *name)
 {
     time_t now = time(0);
-
-    sqlite3_bind_int((*stmt_insert_values), 1, 3);
-    sqlite3_bind_text((*stmt_insert_values), 2, "DDD", sizeof("DDD"), NULL);
+    int i = strlen(name);
+    printf("NAME %s %d\n", name, i);
+    sqlite3_bind_int((*stmt_insert_values), 1, nr);
+    sqlite3_bind_text((*stmt_insert_values), 2, name, strlen(name), NULL);
     sqlite3_bind_int64((*stmt_insert_values), 3, now);
     sqlite3_step((*stmt_insert_values));
-
-    /* neccessary if SQL query will be reused */
+    /* reset stmt, needed when it is reused */
     sqlite3_reset((*stmt_insert_values));
-
-    sqlite3_bind_int((*stmt_insert_values), 1, 4);
-    sqlite3_bind_text((*stmt_insert_values), 2, "SSS", sizeof("SSS"), NULL);
-    sqlite3_bind_int64((*stmt_insert_values), 3, now);
-    sqlite3_step((*stmt_insert_values));
-
-
     return 0;
 }
 

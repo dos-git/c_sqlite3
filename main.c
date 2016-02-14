@@ -25,7 +25,9 @@ int main(int argc, char **argv)
 
     prepare_stmt_queries(&dbh, &stmt_select, &stmt_insert_values);
 
-    insert_values(&stmt_insert_values);
+    insert_values(&stmt_insert_values, 1, "DOMINO");
+    insert_values(&stmt_insert_values, 2, "BBBB");
+    insert_values(&stmt_insert_values, 3, "ABX");
 
     print_all(&dbh, &stmt_select);
 

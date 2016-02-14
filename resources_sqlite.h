@@ -6,9 +6,11 @@
 #include <stdlib.h>
 #include <unistd.h>     /* for access() */
 #include <errno.h>      /* to compare codes when access is used */
+#include <string.h>
 
-#include "sqlite3.h"
 #include <time.h>
+#include "sqlite3.h"
+
 
 #define ERR_OK          0      /* no error */
 #define ERR_OP_FAILED   1      /* operation failed */
@@ -38,7 +40,7 @@ int check_db_structure(void);           /* verifies DB structure */
 
 int prepare_stmt_queries(sqlite3 **db_h, sqlite3_stmt **stmt_select, sqlite3_stmt **stmt_insert_values);
 
-int insert_values(sqlite3_stmt **stmt_insert_values);
+int insert_values(sqlite3_stmt **stmt_insert_values, int nr, const char *name);
 int execute_query(sqlite3 *db_h, char *sql_query);
 
 void print_all(sqlite3 **db_h, sqlite3_stmt **stmt_select);
